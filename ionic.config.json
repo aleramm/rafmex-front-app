@@ -1,0 +1,7 @@
+{
+  "name": "ion-dapp-react",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
