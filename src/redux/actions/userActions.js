@@ -1,19 +1,24 @@
 import { USER_INIT, USER_SUCCESS, USER_ERROR  } from '../types';
-import axios from '../../config/axios';
+// import axios from '../../config/axios';
 
 export const userInicio = () => {
     return { type: USER_INIT };
 };
-export const userExito = (configuration, programas) => {
-    return { type : USER_SUCCESS, payload : {configuration, programas}};
+export const userExito = (perfil) => {
+    return { type : USER_SUCCESS, payload : perfil};
 };
 export const userError = () => {
     return { type:  USER_ERROR };
 };
 
-export const userCargaAction = () => {
+export const userLoadAction = () => {
     return (dispatch, getState) => {
         dispatch(userInicio());
+
+        const user = getState().login.login_info.user;
+        const {rol, token, brand, logo} = getState().login.login_info;
+
+        dispatch(userExito({user, employee: {rol, brand, logo}, token}))
 /*
         const { token, perfil } = getState().login.access_token;
         let configuration, programs = {};

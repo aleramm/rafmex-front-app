@@ -1,0 +1,21 @@
+.link-reference {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.display-any {
+    display: block !important;
+}
+
+.custom-logo {
+    width: auto !important;
+    height: 36px !important;
+}
+
+.cutom-brad-title {
+    font-size: 10px !important;
+}
+
+.pos-btn {
+    margin: 0px 2px !important;
+}
