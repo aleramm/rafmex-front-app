@@ -32,11 +32,13 @@ import './assets/css/main.css'
 import './assets/css/pdv.css'
 
 /* Template Pongo JS */
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 /* Theme variables */
 import './theme/variables.css';
 import Main from './pages/Main';
 import Login from './pages/Login';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 
 const App: React.FC = () => (
@@ -44,7 +46,7 @@ const App: React.FC = () => (
     <Router>
       <Provider store={store}>
         <Switch>
-          <Route exact path="/" component={Login}/>
+          <Route exact path="/" component={Main}/>
           <Main />
         </Switch>
       </Provider>
