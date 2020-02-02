@@ -40,6 +40,10 @@ import Main from './pages/Main';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 
+/* Import Local Styles */
+import './assets/rafmexassets/App.css';
+import './assets/rafmexassets/Main.css';
+import './assets/rafmexassets/util.css';
 
 const App: React.FC = () => (
   <IonApp>
@@ -52,6 +56,6 @@ const App: React.FC = () => (
       </Provider>
     </Router>
   </IonApp>
-);
+)
 
 export default App;

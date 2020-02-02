@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 
 const Home: React.FC = () => {
@@ -22,11 +23,10 @@ const Home: React.FC = () => {
 					</div>
 				</div>
 			</div>
-
 			<div className="wrap-menu-desktop">
 				<nav className="limiter-menu-desktop container">
 					<a href="index.html" className="logo">
-						<img src="img/icons/logo.png" alt="IMG-LOGO" />
+						<img src="" alt="IMG-LOGOS" />
 					</a>
 					<div className="menu-desktop">
 						<ul className="main-menu">
