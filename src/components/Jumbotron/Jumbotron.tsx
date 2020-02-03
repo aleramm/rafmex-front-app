@@ -51,7 +51,7 @@ const Jumbotron: React.FC = () => {
                     <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                         <div className="layer-slick2 ">
                             <span className="ltext-101 cl3 respon2">
-                                <img src={LogoRaf} />
+                                <img src="img/logo_raf.png" />
                                 El toque perfecto para
                             </span>
                         </div>
@@ -72,36 +72,25 @@ const Jumbotron: React.FC = () => {
             </div>
                     </Carousel.Item>
                     <Carousel.Item>
-                    <div className="item-slick3" style={{ backgroundImage: `url(${ImageSlide03})` }}>
-                <div className="container h-full">
-                    <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-                        <div className="layer-slick3  ">
-                            <span className="ltext-101 cl3 respon2">
-                                <img src={LogoRaf} />
-                                Moldes y Charolas
-                            </span>
-                        </div>
-                            
-                        <div className="layer-slick3">
-                            <h2 className="ltext-201 cl2 p-t-19 p-b-43 respon1">
-                                para tus creaciones
-                            </h2>
-                        </div>
-                            
-                        <div className="layer-slick3">
-                            <a href="moldes.html" className="flex-c-m stext-101 cl0 size-101 blue_b bor1 hov-btn1 p-lr-15 trans-04">
-                                Detalles
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <div className="item-slick1" style={{ backgroundImage: `url(${ImageSlide03})` }} />
                     </Carousel.Item>
                     </Carousel>
                 </div>
             </ div>
-        </ section>
+        <section />
   )
+    {/* <div className="wrap-slick1">
+        <div className="slick1">
+
+
+
+
+            
+        </div>
+    </div> */}
+</section>
+
+    )
 }
 
 export default Jumbotron;

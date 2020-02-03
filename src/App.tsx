@@ -37,8 +37,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 /* Theme variables */
 import './theme/variables.css';
 import Main from './pages/Main';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard/Dashboard';
+//import Inicio from './pages/Inicio';
+import Nosotros from './pages/Nosotros';
+import Productos from './pages/Productos';
+import Distribuidores from './pages/Distribuidores';
+import Novedades from './pages/Novedades';
+import Contacto from './pages/Contacto';
 
 /* Import Local Styles */
 import './assets/rafmexassets/App.css';
@@ -51,6 +55,12 @@ const App: React.FC = () => (
       <Provider store={store}>
         <Switch>
           <Route exact path="/" component={Main}/>
+          {/* <Route exact path="/inicio" component={Inicio}/> */}
+          <Route exact path="/nosotros" component={Nosotros}/>
+          <Route exact path="/productos" component={Productos}/>
+          <Route exact path="/distribuidores" component={Distribuidores}/>
+          <Route exact path="/novedades" component={Novedades}/>
+          <Route exact path="/contacto" component={Contacto}/>
           <Main />
         </Switch>
       </Provider>
