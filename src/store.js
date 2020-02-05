@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './redux/reducers'
-import { getStorage } from './localStorage';
+import { getStorage, saveStateStorage } from './localStorage';
 
 const storageState = getStorage();
 
@@ -15,12 +15,10 @@ const store = createStore(
     )
 );
 
-/*
 store.subscribe(() => {
-    savePlatform({
-        platform : store.getState().device
+    saveStateStorage({
+        login_info : store.getState().login
     })
 })
-*/
 
 export default store;

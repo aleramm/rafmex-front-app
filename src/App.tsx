@@ -1,13 +1,14 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
+import { IonApp } from '@ionic/react';
 
 /* Custom Project */
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 
+/* Header */
+import HeaderApp from './components/Header/Header';
+import FooterApp from './components/Footer/Footer';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -25,20 +26,49 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
+/* Template Pongo CSS */
+import './assets/plugins/bootstrap/dist/css/bootstrap.min.css'
+import './assets/plugins/font-awesome/css/font-awesome.min.css'
+import './assets/plugins/bootstrap-daterangepicker/daterangepicker.css'
+import './assets/plugins/animate/animate.css'
+import './assets/css/main.css'
+import './assets/css/pdv.css'
+
+/* Template Pongo JS */
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 /* Theme variables */
 import './theme/variables.css';
+import Main from './pages/Main';
+//import Inicio from './pages/Inicio';
+import Nosotros from './pages/Nosotros';
+import Productos from './pages/Productos';
+import Distribuidores from './pages/Distribuidores';
+import Novedades from './pages/Novedades';
+import Contacto from './pages/Contacto';
+
+/* Import Local Styles */
+import './assets/rafmexassets/App.css';
+import './assets/rafmexassets/Main.css';
+import './assets/rafmexassets/util.css';
 
 const App: React.FC = () => (
   <IonApp>
-    <Provider store={store}>
-      <IonReactRouter>
-        <IonRouterOutlet>
-          <Route path="/home" component={Home} exact={true} />
-          <Route exact path="/" render={() => <Redirect to="/home" />} />
-        </IonRouterOutlet>
-      </IonReactRouter>
-    </Provider>
+   <HeaderApp />
+    <Router>
+      <Provider store={store}>
+        <Switch>
+          <Route exact path="/" component={Main}/>
+          <Route exact path="/nosotros" component={Nosotros}/>
+          <Route exact path="/productos" component={Productos}/>
+          <Route exact path="/distribuidores" component={Distribuidores}/>
+          <Route exact path="/novedades" component={Novedades}/>
+          <Route exact path="/contacto" component={Contacto}/>
+        </Switch>
+      </Provider>
+    </Router>
+    <FooterApp />
   </IonApp>
-);
+)
 
 export default App;

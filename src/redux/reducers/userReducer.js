@@ -1,9 +1,9 @@
 import { USER_INIT, USER_SUCCESS, USER_ERROR } from '../types';
 
 const initialState = {
-    configurationUser : {},
-    errorUser : false,
-    loading : true
+    perfil : {},
+    error : false,
+    loading : false
 };
 
 export default function(state, action){
@@ -20,15 +20,15 @@ export default function(state, action){
         case USER_SUCCESS:
             return {
                 ...state,
-                configurationUser : action.payload.configuration,
-                errorUser : false,
+                perfil : action.payload,
+                error : false,
                 loading : false 
             };
         case USER_ERROR:
             return {
                 ...state,
-                configurationUser : {},
-                errorUser : true,
+                perfil : {},
+                error : true,
                 loading : false
             };
         default:

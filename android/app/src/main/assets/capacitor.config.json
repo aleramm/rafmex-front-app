@@ -1,8 +1,0 @@
-{
-  "appId": "io.ionic.starter",
-  "appName": "ion-dapp-react",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "build",
-  "cordova": {}
-}
