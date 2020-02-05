@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 
+/* Header */
+import HeaderApp from './components/Header/Header';
+import FooterApp from './components/Footer/Footer';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -51,20 +54,20 @@ import './assets/rafmexassets/util.css';
 
 const App: React.FC = () => (
   <IonApp>
+   <HeaderApp />
     <Router>
       <Provider store={store}>
         <Switch>
           <Route exact path="/" component={Main}/>
-          {/* <Route exact path="/inicio" component={Inicio}/> */}
           <Route exact path="/nosotros" component={Nosotros}/>
           <Route exact path="/productos" component={Productos}/>
           <Route exact path="/distribuidores" component={Distribuidores}/>
           <Route exact path="/novedades" component={Novedades}/>
           <Route exact path="/contacto" component={Contacto}/>
-          <Main />
         </Switch>
       </Provider>
     </Router>
+    <FooterApp />
   </IonApp>
 )
 
