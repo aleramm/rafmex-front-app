@@ -2,7 +2,6 @@ import * as React from "react";
 
 const Footer: React.FC = () => {
     return (
-        <div>
             <footer className="bg1 p-t-75 p-b-32">
                 <div className="container">
                     <div className="row">
@@ -121,12 +120,6 @@ const Footer: React.FC = () => {
                     </div>
                 </div>
             </footer>
-            <div className="btn-back-to-top" id="myBtn">
-                <span className="symbol-btn-back-to-top">
-                    <i className="zmdi zmdi-chevron-up"></i>
-                </span>
-            </div>
-        </div>
     );
 }
 

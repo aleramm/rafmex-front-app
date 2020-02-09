@@ -47,11 +47,6 @@ const Distribuidores: React.FC = () => {
     return (
         <div>
 <div>
-    <section className="bg-img1 txt-center p-lr-15 p-tb-92" style={{ backgroundImage: `url(${ImageB4})` }}>
-        <h2 className="ltext-105 cl0 txt-center">
-			Distribuidores
-		</h2>
-    </section>
 
     <section className="sec-relate-product bg0 p-t-45 p-b-105 back_map">
         <div className="container">

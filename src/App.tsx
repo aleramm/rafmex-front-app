@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { IonApp } from '@ionic/react';
 
 /* Custom Project */
@@ -52,23 +52,65 @@ import './assets/rafmexassets/App.css';
 import './assets/rafmexassets/Main.css';
 import './assets/rafmexassets/util.css';
 
-const App: React.FC = () => (
-  <IonApp>
-   <HeaderApp />
-    <Router>
-      <Provider store={store}>
-        <Switch>
-          <Route exact path="/" component={Main}/>
-          <Route exact path="/nosotros" component={Nosotros}/>
-          <Route exact path="/productos" component={Productos}/>
-          <Route exact path="/distribuidores" component={Distribuidores}/>
-          <Route exact path="/novedades" component={Novedades}/>
-          <Route exact path="/contacto" component={Contacto}/>
-        </Switch>
-      </Provider>
-    </Router>
-    <FooterApp />
-  </IonApp>
-)
+import Bg01 from './assets/img/bg-01.jpg';
 
+class App extends React.Component {
+  render() {
+    return (
+      <IonApp style={{ overflowY: 'scroll' }}>
+        <Router>
+          <Fragment>
+            <div style={{ paddingTop: '50px' }}>
+              <HeaderApp />
+                <Switch>
+                  <Route exact path="/index" component={Main} />
+                  <Route exact path="/nosotros" component={Nosotros}>
+                    <section className="bg-img1 txt-center p-lr-15 p-tb-92" style={{ backgroundImage: `url(${Bg01})` }}>
+                      <h2 className="ltext-105 cl0 txt-center">
+                          Nosotros
+                      </h2>
+                    </section>
+                    <Nosotros />
+                  </ Route>
+                  <Route exact path="/productos" component={Productos}>
+                    <section className="bg-img1 txt-center p-lr-15 p-tb-92" style={{ backgroundImage: `url(${Bg01})` }}>
+                      <h2 className="ltext-105 cl0 txt-center">
+                          Productos
+                      </h2>
+                    </section>
+                    <Productos />
+                  </ Route>
+                  <Route exact path="/distribuidores" component={Distribuidores}  >
+                    <section className="bg-img1 txt-center p-lr-15 p-tb-92" style={{ backgroundImage: `url(${Bg01})` }}>
+                      <h2 className="ltext-105 cl0 txt-center">
+                        Distribuidores
+                      </h2>
+                    </section>
+                    <Distribuidores />
+                  </ Route>
+                  <Route exact path="/novedades" component={Novedades}  >
+                    <section className="bg-img1 txt-center p-lr-15 p-tb-92" style={{ backgroundImage: `url(${Bg01})` }}>
+                      <h2 className="ltext-105 cl0 txt-center">
+                        Novedades
+                      </h2>
+                    </section>
+                    <Novedades />
+                  </ Route>
+                  <Route exact path="/contacto" component={Contacto}  >
+                    <section className="bg-img1 txt-center p-lr-15 p-tb-92" style={{ backgroundImage: `url(${Bg01})` }}>
+                      <h2 className="ltext-105 cl0 txt-center">
+                        Contacto
+                      </h2>
+                    </section>
+                    <Contacto />
+                  </ Route>
+                </Switch>
+                <FooterApp />
+              </div>
+          </Fragment>
+        </Router>
+      </IonApp>
+    )
+  }
+};
 export default App;
