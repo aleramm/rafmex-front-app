@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import ImageB4 from '../assets/img/bg-03.jpg';
 import PerfectScrollbar from 'perfect-scrollbar';
+import Slider from "react-slick";
 import DIS1 from '../assets/img/distribuidores/dis_1.jpg';
 import DIS2 from '../assets/img/distribuidores/dis_2.jpg';
 import DIS3 from '../assets/img/distribuidores/dis_3.jpg';
@@ -44,22 +45,30 @@ const Distribuidores: React.FC = () => {
             minScrollbarLength: 20
           });
     });
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      };
     return (
         <div>
 <div>
 
     <section className="sec-relate-product bg0 p-t-45 p-b-105 back_map">
         <div className="container">
-
+        <div className="row">
             <div className="wrap-slick4">
-                <div className="slick4">
+                <div className="slick4 d-flex">
 
+                <Slider {...settings}>
                     {states.map((item,index) => {
                         const valueMap = DIS1;   
                         return (                 
                             <div key={item} className="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                                <div className="block2">
-                                    <div className="block2-pic hov-img0">
+                                <div className="block2" style={{ width: '200px' }}>
+                                    <div className="block2-pic hov-img0" style={{ maxWidth: '250px' }}>
                                         <img src={valueMap} alt="IMG-PRODUCT" />
                                         <a href="#" className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                             Ver
@@ -78,11 +87,12 @@ const Distribuidores: React.FC = () => {
                             </div>
                         );
                     })}
-
+                </Slider>
                     
 
                 </div>
             </div>
+        </div>
         </div>
     </section>
 

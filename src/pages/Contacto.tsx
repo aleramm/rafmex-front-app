@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ImageB4 from '../assets/img/bg-04.jpg';
+import {fetchApi} from '../fetchApi/fetchApi';
 
 const Contacto: React.FC = () => {
+	const [state, setState] = useState({
+		office_phone : '',
+		office_mail : '',
+		store_address : '',
+		store_phone : '',
+		store_mail : ''
+	});
+	useEffect(() => {
+		fetchApi('contact', 'GET')
+			.then(response => {
+				setState({ ...state, ...response });
+			});
+	  }, [])
+	const { office_phone, office_mail, store_address, store_phone, store_mail } = state;
     return (
 		<div>
 			<section className="bg0 p-t-104 p-b-116">
@@ -54,7 +69,7 @@ const Contacto: React.FC = () => {
 									</span>
 
 									<p className="stext-115 cl1 size-213 p-t-18">
-										<a href="tel:5553416767">(+52) 55 5341 6767</a>
+										<a href="tel:5553416767">{office_phone}</a>
 									</p>
 								</div>
 							</div>
@@ -70,7 +85,7 @@ const Contacto: React.FC = () => {
 									</span>
 
 									<p className="stext-115 cl1 size-213 p-t-18">
-										<a href="mailto: ventas@rafmex.com"> ventas@rafmex.com</a>
+										<a href="mailto: ventas@rafmex.com">{office_mail}</a>
 									</p>
 								</div>
 							</div>
@@ -96,7 +111,7 @@ const Contacto: React.FC = () => {
 									</span>
 
 									<p className="stext-115 cl6 size-213 p-t-18">
-										Dr. Liceaga #96, Doctores, Cuauhtémoc, CDMX .06720
+										{store_address}
 									</p>
 								</div>
 							</div>
@@ -112,7 +127,7 @@ const Contacto: React.FC = () => {
 									</span>
 
 									<p className="stext-115 cl1 size-213 p-t-18">
-										<a href="tel:5553416767">(+52) 55 5341 6767</a>  y  <a href="tel:55780363">(+52) 5578 0363 </a>
+										<a href="tel:5553416767">{store_phone}</a>
 									</p>
 								</div>
 							</div>
@@ -128,7 +143,7 @@ const Contacto: React.FC = () => {
 									</span>
 
 									<p className="stext-115 cl1 size-213 p-t-18">
-										<a href="mailto:tienda@rafmex.com">tienda@rafmex.com</a>
+										<a href="mailto:tienda@rafmex.com">{store_mail}</a>
 									</p>
 								</div>
 							</div>

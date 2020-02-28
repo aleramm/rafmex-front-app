@@ -54,6 +54,9 @@ import './assets/rafmexassets/util.css';
 
 import Bg01 from './assets/img/bg-01.jpg';
 
+/* dotenv */
+require('dotenv').config()
+
 class App extends React.Component {
   render() {
     return (
