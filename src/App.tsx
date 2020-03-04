@@ -34,18 +34,25 @@ import './assets/plugins/animate/animate.css'
 import './assets/css/main.css'
 import './assets/css/pdv.css'
 
+/* Material Design */
+import './assets/fonts/iconic/css/material-design-iconic-font.min.css';
+
 /* Template Pongo JS */
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 /* Theme variables */
 import './theme/variables.css';
 import Main from './pages/Main';
+
 //import Inicio from './pages/Inicio';
 import Nosotros from './pages/Nosotros';
 import Productos from './pages/Productos';
 import Distribuidores from './pages/Distribuidores';
 import Novedades from './pages/Novedades';
 import Contacto from './pages/Contacto';
+
+/* Import Productos */
+
 
 /* Import Local Styles */
 import './assets/rafmexassets/App.css';

@@ -1,7 +1,14 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Logo from '../../assets/img/icons/logo.png';
+/* Cart */
+import Cart from '../../../src/pages/Cart/Cart';
 
 const HeaderApp: React.FC = () => {
+    const [state, setState ] = useState({ showCart: false });
+
+    const activatCart = () => setState({ showCart: true });
+ 
+    const { showCart } = state;
     return (
         <div className="row">
             <header>
@@ -58,8 +65,20 @@ const HeaderApp: React.FC = () => {
                                     <li>
                                         <a href="/contacto">Contacto</a>
                                     </li>
+
+                                    <li>
+                                        <a href="/comprar">Comprar</a>
+                                    </li>
                                 </ul>
                             </div>	
+
+
+                            <div onClick={() => activatCart()} className="wrap-icon-header flex-w flex-r-m">
+                                <div className="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+                                    <i className="zmdi zmdi-shopping-cart"></i>
+                                </div>
+                            </div>
+
 
 
                         </nav>
@@ -126,6 +145,7 @@ const HeaderApp: React.FC = () => {
                     </ul>
                 </div>
 
+                <Cart showCart={showCart} />
             </header>
         </div>
     );

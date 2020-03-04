@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import {fetchApi} from '../fetchApi/fetchApi';
 import About01 from '../assets/img/about-01.jpg';
 import About02 from '../assets/img/about-02.jpg';
 
 const Nosotros: React.FC = (props: any) => {
+	const [state, setState] = useState({
+		info: []
+	});
+	useEffect(() => {
+		fetchApi('identidad_empresa', 'GET')
+			.then(response => {
+				setState({ ...state, info: response });
+			})
+		},[]);
+		
+	const { info } = state;
+	console.log(info[0]['value'])
     return(
         <section className="bg0 p-t-75 p-b-120">
 		<div className="container">
@@ -12,26 +25,15 @@ const Nosotros: React.FC = (props: any) => {
 						<h3 className="mtext-111 cl2 p-b-16">
 							Misión
 						</h3>
-
 						<p className="stext-113 cl6 p-b-26">
-							Somos una empresa especializada en el desarrollo, fabricación y comercialización de saborizantes, colorantes y otros ingredientes para la industria alimenticia, específicamente la panificadora, la pastelera y repostera.
-
-
+							{/* {info[0].value} */}
 						</p>
-
-						<p className="stext-113 cl6 p-b-26">
-							Nos distinguimos por la innovación y excelencia en cada uno de nuestros procesos, complementando nuestra línea con accesorios de alta calidad.
-
-							<br/><br/>
-							Satisfacemos la necesidad del profesional y agregamos valor adicional a su producto final.
-						</p>
-
 						<h3 className="mtext-111 cl2 p-b-16">
 							Visión
 						</h3>
 
 						<p className="stext-113 cl6 p-b-26">
-							Ser una empresa altamente reconocida en el mercado por su experiencia, servicio y productos confiables.
+							{/* {info[1].value} */}
 						</p>
 
 					</div>
@@ -54,26 +56,7 @@ const Nosotros: React.FC = (props: any) => {
 						</h3>
 
 						<div className="stext-113 cl6 p-b-26 about_text">
-		
-		<h6>Responsabilidad</h6>
-
-         <span> Asumir y ocuparnos en las tareas que nos corresponden.</span>
-
-        <h6>Honestidad</h6>
-
-         <span>Tener consistencia entre la forma de pensar, decir y actuar.</span>
-
-        <h6>Lealtad</h6>
-
-         <span>Comprometernos con la empresa y clientes ante cualquier situación.</span>
-
-        <h6>Respeto</h6>
-
-         <span>Comprender y aceptar que todos somos diferentes en forma de ser y pensar.</span>
-
-        <h6>Innovación</h6>
-
-         <span>Con entusiasmo y creatividad, impulsamos la cultura de la mejora continua para afrontar nuevos retos.</span>
+							{/* {info[0].value} */}
 						</div>
 
 						<div className="bor16 p-l-29 p-b-9 m-t-22">
