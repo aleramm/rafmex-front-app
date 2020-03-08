@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import path from 'path';
 import Producto from '../pages/Productos/Producto';
+import ProductsBar from './Productos/ProductsBar';
 import {fetchApi} from '../fetchApi/fetchApi';
 import Banner01 from '../assets/img/banner-01.jpg';
 import Banner02 from '../assets/img/banner-02.jpg';
@@ -17,6 +18,7 @@ const Productos: React.FC = () => {
         items: [],
         isGeneral: true,
         product: '',
+        url: '',
 	});
 	useEffect(() => {
 		fetchApi('items/products', 'GET')
@@ -24,10 +26,13 @@ const Productos: React.FC = () => {
 				setState({ ...state, items: response });
 			});
         }, []);
-    const goProduct = (product: string) => {
-        setState({ ...state, isGeneral: false, product });
+    const goProduct = (product: string, img_url: string) => {
+        setState({ ...state, isGeneral: false, product, url: img_url });
     };
-    const { items, isGeneral, product } = state;
+    const changeLocation = (url:string) => {
+        setState({ ...state, url });
+    };
+    const { items, isGeneral, product, url } = state;
     return (
         <div>
             <div className="sec-banner bg0 p-t-80 p-b-50">
@@ -40,7 +45,7 @@ const Productos: React.FC = () => {
                                 <div style={{cursor:'pointer ! important'}} className="col-md-6 col-xl-3 p-b-30 m-lr-auto" key={title}>
                                     <div className="block1 wrap-pic-w">
                                         <img src={images[index]} alt="IMG-BANNER" />
-                                        <div  onClick={() => goProduct(title)} className="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                                        <div  onClick={() => goProduct(title, img_url)} className="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                                             <div className="block1-txt-child1 flex-col-l">
                                                 <span className="block1-name ltext-102 trans-04 p-b-8">
                                                     {title}
@@ -71,9 +76,18 @@ const Productos: React.FC = () => {
                     </div>
                 </div>
            
-                ) || <Producto 
-                        producto={product}
-                    />
+                ) || 
+                    <>
+                        <ProductsBar 
+                            allProducts={items}
+                            changeLocation={changeLocation}
+                        />
+                        <Producto 
+                            producto={product}
+                            url={url}
+                            allProducts={items}
+                        />
+                    </>
                 }
            
             </div>

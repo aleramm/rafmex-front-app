@@ -6,31 +6,34 @@ import IconHeart1 from '../../assets/img/icons/icon-heart-01.png';
 import IconHeart2 from '../../assets/img/icons/icon-heart-02.png';
 
 const Producto = (props:any) => {
-    
+    const { producto, url, allProducts } = props;
     const [state, setState] = useState({
         items: [],
         producto: '',
-        showModal: false,
+        showModal: '',
         titleCard: '', 
         description: '',
     });
 	useEffect(() => {
-        //fetchApi(`items/${url}`, 'GET')
-        fetchApi('productos/saborizantes', 'GET')
+        fetchApi(`productos${url}`, 'GET')
 			.then(response => {
 				setState({ ...state, items: response });
             });
         }, []);
     const showInfoModal = (titleCard:string, description:string) => {
-        setState({ ...state, titleCard, description, showModal: true });
+        setState({ ...state, titleCard, description, showModal: 'show-modal1' });
     };
-    const { producto, /*url*/ } = props;
+
+    const closeModal = () => {
+        setState({ ...state, showModal: '' });
+    };
+
     const { items, showModal, titleCard, description } = state;
     return (
         <div className="container">
             <div className="row isotope-grid">
                 {items.map((item,index) => {
-                    const { title:titleCard, description, img_url } = item;
+                    const { title:titleCard, description, img_url, price } = item;
                     return (
                         <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" style={{ cursor: 'pointer' }}>
                             <div className="block2">
@@ -38,7 +41,7 @@ const Producto = (props:any) => {
                                     {/* <img src="images/product-01.jpg" alt="IMG-PRODUCT" /> */}
                                     <img src={ImageDemo} alt="IMG-PRODUCT" />
                                     <div onClick={() => showInfoModal(titleCard, description)} className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                        Quick View
+                                        Ver Detalles
                                     </div>
                                 </div>
                                 <div className="block2-txt flex-w flex-t p-t-14">
@@ -48,7 +51,7 @@ const Producto = (props:any) => {
                                         </div>
                                         <span className="stext-105 cl3">
                                             {/* {titleCard} */}
-                                            $16.64
+                                            {price}
                                         </span>
                                     </div>
                                     <div className="block2-txt-child2 flex-r p-t-3">
@@ -63,7 +66,8 @@ const Producto = (props:any) => {
                     )
                 })}
             </div>
-            <ModalInfo 
+            <ModalInfo
+                closeModal={closeModal}
                 showModal={showModal}
                 titleCard={titleCard}
                 description={description}

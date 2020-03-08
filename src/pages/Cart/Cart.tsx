@@ -4,18 +4,10 @@ import ItemPic02 from '../../assets/img/novedades/nove1.jpg';
 import ItemPic03 from '../../assets/img/novedades/nove1.jpg';
 
 const Cart = (props:any) => {
-    const { showCart } = props;
+    const { showCart, closeModal } = props;
 
-    const [state, setState] = useState({ visibleCart: '' })
-
-    useEffect(() => {
-        const visibleCart = showCart ? 'show-header-cart' : '';
-        setState({ ...state, visibleCart });
-    }, [showCart]);
-    const closeModal = () => setState({ ...state, visibleCart: '' })
-    const { visibleCart } = state;
     return(
-        <div className={`wrap-header-cart js-panel-cart ${visibleCart}`}>
+        <div className={`wrap-header-cart js-panel-cart ${showCart}`}>
             <div className="s-full js-hide-cart"></div>
 
             <div className="header-cart flex-col-l p-l-65 p-r-25">
@@ -24,7 +16,7 @@ const Cart = (props:any) => {
                         Your Cart
                     </span>
 
-                    <div onClick={() => closeModal()} className="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+                    <div onClick={closeModal} className="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
                         <i className="zmdi zmdi-close"></i>
                     </div>
                 </div>

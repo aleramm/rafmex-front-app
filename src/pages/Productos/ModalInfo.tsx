@@ -5,22 +5,15 @@ import ProductDetailimage03 from '../../assets/img/prod-03.jpg';
 import IconClose from '../../assets/img/icons/icon-close.png';
 
 const ModalInfo = (props: any) => {
-    const { showModal, titleCard, description } = props;
-    const [state, setState] = useState({ display: '' });
+    const { showModal, closeModal, titleCard, description } = props;
 
-    useEffect(() => {
-        const display = showModal ? 'show-modal1' : '';
-        setState({ ...state, display });
-    }, [showModal]);
-    const closeModal = () => setState({ ...state, display: '' })
-    const { display } = state;
     return (
-        <div className={`wrap-modal1 js-modal1 p-t-60 p-b-20 ${display}`}>
+        <div className={`wrap-modal1 js-modal1 p-t-60 p-b-20 ${showModal}`}>
             <div className="overlay-modal1 js-hide-modal1"></div>
 
             <div className="container">
                 <div className="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-                    <button onClick={() => closeModal()} className="how-pos3 hov3 trans-04 js-hide-modal1">
+                    <button onClick={closeModal} className="how-pos3 hov3 trans-04 js-hide-modal1">
                         <img src={IconClose} alt="CLOSE" />
                     </button>
 
