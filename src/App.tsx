@@ -3,8 +3,6 @@ import { IonApp } from '@ionic/react';
 
 /* Custom Project */
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./store";
 
 /* Header */
 import HeaderApp from './components/Header/Header';
@@ -50,6 +48,7 @@ import Productos from './pages/Productos';
 import Distribuidores from './pages/Distribuidores';
 import Novedades from './pages/Novedades';
 import Contacto from './pages/Contacto';
+import MainCart from './pages/MainCart';
 
 /* Import Productos */
 
@@ -58,8 +57,12 @@ import Contacto from './pages/Contacto';
 import './assets/rafmexassets/App.css';
 import './assets/rafmexassets/Main.css';
 import './assets/rafmexassets/util.css';
+import './assets/rafmexassets/css/extras.css';
 
 import Bg01 from './assets/img/bg-01.jpg';
+
+/* antd */
+import 'antd/dist/antd.css';
 
 /* dotenv */
 require('dotenv').config()
@@ -114,6 +117,7 @@ class App extends React.Component {
                     </section>
                     <Contacto />
                   </ Route>
+                  <Route exact path="/miCarrito" component={Contacto}  ><MainCart /></ Route>
                 </Switch>
                 <FooterApp />
               </div>

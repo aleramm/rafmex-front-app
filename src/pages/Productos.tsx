@@ -11,37 +11,53 @@ import Banner05 from '../assets/img/banner-05.jpg';
 import Banner06 from '../assets/img/banner-06.jpg';
 import Banner07 from '../assets/img/banner-07.jpg';
 import Banner09 from '../assets/img/banner-09.jpg';
+import { Spin } from 'antd';
 const images = [Banner01,Banner02,Banner03,Banner04,Banner05,Banner06,Banner07,Banner09];
 
 const Productos: React.FC = () => {
     const [state, setState] = useState({
-        items: [],
+        itemsGeneral: [],
+        itemProduct: [],
         isGeneral: true,
+        loading: false,
         product: '',
         url: '',
 	});
 	useEffect(() => {
 		fetchApi('items/products', 'GET')
-			.then(response => {
-				setState({ ...state, items: response });
+			.then(itemsGeneral => {
+				setState({ ...state, itemsGeneral });
 			});
         }, []);
-    const goProduct = (product: string, img_url: string) => {
-        setState({ ...state, isGeneral: false, product, url: img_url });
+    const goProduct = (product: string, url: string) => {
+        setState({ ...state, isGeneral: false, product, url });
     };
-    const changeLocation = (url:string) => {
-        setState({ ...state, url });
+    const changeLocation = (product:string, url:string) => {
+        setState({ ...state, product, url, loading: true });
+        // fetchApi(`productos${url}`, 'GET')
+		// 	.then(itemProduct => {
+		// 		setState({ ...state, itemProduct });
+        //     });
     };
-    const { items, isGeneral, product, url } = state;
+    const loader = (loading:boolean) => {
+        setState({ ...state, loading });
+    };
+    const { itemProduct, itemsGeneral, isGeneral, product, url, loading } = state;
     return (
         <div>
-            <div className="sec-banner bg0 p-t-80 p-b-50">
+            {!isGeneral && (
+                <ProductsBar 
+                    allProducts={itemsGeneral}
+                    changeLocation={changeLocation}
+                />
+            )}
+            <div className={`sec-banner bg0 ${isGeneral && 'p-t-80'} p-b-50` }>
                 {isGeneral && (
                 <div className="container">
                     <div className="row">
-                        {items.map((item, index) => {
+                        {itemsGeneral.map((item, index) => {
                             const {title, img_url} = item;
-                            return(
+                            return( 
                                 <div style={{cursor:'pointer ! important'}} className="col-md-6 col-xl-3 p-b-30 m-lr-auto" key={title}>
                                     <div className="block1 wrap-pic-w">
                                         <img src={images[index]} alt="IMG-BANNER" />
@@ -77,17 +93,13 @@ const Productos: React.FC = () => {
                 </div>
            
                 ) || 
-                    <>
-                        <ProductsBar 
-                            allProducts={items}
-                            changeLocation={changeLocation}
-                        />
+                    <Spin spinning={loading}>
                         <Producto 
                             producto={product}
                             url={url}
-                            allProducts={items}
+                            loader={loader}
                         />
-                    </>
+                    </Spin>
                 }
            
             </div>

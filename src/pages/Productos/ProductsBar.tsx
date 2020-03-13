@@ -11,7 +11,7 @@ const ProductsBar = (props:any) => {
                             {allProducts.length !== 0 && (
                                 allProducts.map((item:any) => {
                                     return (
-                                        <button name={item.img_url} onClick={changeLocation} className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" >
+                                        <button key={item.img_url} name={item.img_url} onClick={() => changeLocation(item.title,item.img_url)} className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" >
                                             {item.title}
                                         </button>
                                     )

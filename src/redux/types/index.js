@@ -9,3 +9,9 @@ export const LOGIN_LOGOUT = 'LOGIN_LOGOUT';
 export const USER_INIT    = 'USER_INIT';
 export const USER_SUCCESS = 'USER_SUCCESS';
 export const USER_ERROR   = 'USER_ERROR ';
+
+/* CART */
+export const ADD_ITEM_TO_CART     = 'ADD_ITEM_TO_CART';
+export const DELETE_ITEM_TO_CART  = 'DELETE_ITEM_TO_CART';
+export const CLEAR_CART           = 'CLEAR_CART';
+export const TOTAL_CART           = 'TOTAL_CART';

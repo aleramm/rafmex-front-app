@@ -1,11 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux'
+import { addToCart } from '../../redux/actions/cartActions';
 import ProductDetailimage01 from '../../assets/img/novedades/nove1.jpg';
 import ProductDetailimage02 from '../../assets/img/prod-02.jpg';
 import ProductDetailimage03 from '../../assets/img/prod-03.jpg';
 import IconClose from '../../assets/img/icons/icon-close.png';
+import { Button, notification } from 'antd';
+import { SmileOutlined } from '@ant-design/icons';
 
 const ModalInfo = (props: any) => {
-    const { showModal, closeModal, titleCard, description } = props;
+    const { showModal, closeModal, titleCard:title, description, price, id } = props;
+    const [count, setCount] = useState(1);
+
+    const addToCart = (item:object) => {
+        props.addToCart(item);
+        openNotification(item);
+    }
+
+    const openNotification = (item:any) => {
+        notification.open({
+          message: 'Se agregó el producto al carrito',
+          description: item.title,
+          icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+        });
+      };
 
     return (
         <div className={`wrap-modal1 js-modal1 p-t-60 p-b-20 ${showModal}`}>
@@ -30,11 +48,11 @@ const ModalInfo = (props: any) => {
                         <div className="col-md-6 col-lg-5 p-b-30">
                             <div className="p-r-50 p-t-5 p-lr-0-lg">
                                 <h4 className="mtext-105 cl2 js-name-detail p-b-14">
-                                    {titleCard}
+                                    {title}
                                 </h4>
 
                                 <span className="mtext-106 cl2">
-                                    $58.79
+                                   {price}
                                 </span>
 
                                 <p className="stext-102 cl3 p-t-23">
@@ -47,19 +65,19 @@ const ModalInfo = (props: any) => {
                                 <div className="flex-w flex-r-m p-b-10">
                                     <div className="size-204 flex-w flex-m respon6-next">
                                         <div className="wrap-num-product flex-w m-r-20 m-tb-10">
-                                            <div className="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                            <div onClick={() => setCount(prevCount => prevCount - 1)} className="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                                                 <i className="fs-16 zmdi zmdi-minus"></i>
                                             </div>
 
-                                            <input className="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1" />
+                                            <input className="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value={count} />
 
-                                            <div className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                            <div onClick={() => setCount(prevCount => prevCount + 1)} className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                                 <i className="fs-16 zmdi zmdi-plus"></i>
                                             </div>
                                         </div>
 
-                                        <button className="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                            Add to cart
+                                        <button onClick={() => addToCart({id, title, description, price, amount: count })} className="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                            Agregar al Carrito
                                             </button>
                                     </div>
                                 </div>
@@ -92,4 +110,22 @@ const ModalInfo = (props: any) => {
 
     )
 };
-export default ModalInfo;
+
+const mapStateToProps = (state:any) => {
+ 
+    return {
+        products: state.product,
+        cart: state.cart
+    }
+};
+ 
+const mapDispatchToProps = (dispatch:any) => {
+    return {
+        addToCart: (item:object) => {
+            dispatch(addToCart(item));
+        }
+    }
+};
+ 
+ 
+export default connect(mapStateToProps, mapDispatchToProps)(ModalInfo)
